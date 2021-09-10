@@ -1,0 +1,31 @@
+TO CREATE QVD, YOU USE 'STORE' COMMAND
+> DeptTable:
+> select 1,2,3 from XXX;
+> Store DeptTable into [lib://QVD_Storage/Stage-3/ukks/map_ukks.qvd] (qvd);
+> drop table DeptTable;
+
+________________________________________________________________________
+SET VARIABLE TO MAX DATE OF A QVD FILE LOAD
+> maxtable:
+>       Load date(max(Snapshot_Week)) as maxweek
+>       from (qvd);
+> LET maxdate = peek('maxweek');
+
+________________________________________________________________________
+MAX VALUE AND MAX DATE AND GROUP BY IN LOAD SCRIPT
+> tmp_Orders:
+> LOAD
+>       OrderID
+>     , MAX(DeliveryID)                           AS DeliveryID
+>     , MAX(DATE(FLOOR(TIMESTAMP(DeliveryDate)))) AS DeliveryDate
+> FROM [$(vExtractPath)/relfbl.qvd](qvd)
+> GROUP BY OrderID;
+
+> Orders:
+> NoConcatenate
+> LOAD
+>       OrderID
+>     , DeliveryID
+>     , DeliveryDate
+> Resident tmp_Orders
+> drop table tmp_Orders;
