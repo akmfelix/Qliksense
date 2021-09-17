@@ -14,3 +14,5 @@ WORD WRAP
 = & 'CHR(10)' & 
 
 _____________________________________________________________________________________________
+SAMPLES FROM DASHBOARD
+= if(GetSelectedCount([CALDAY], true(), 'CALDAY2')=0,'CSI' & CHR(10)  &'дата2', 'CSI ' & CHR(10) & min({'CALDAY2'<Year = $::Year, Month = $::Month>}[CALDAY]) & ' - ' & max({'CALDAY2'<Year = $::Year, Month = $::Month>}CALDAY)) 
