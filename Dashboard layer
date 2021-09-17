@@ -1,6 +1,16 @@
 _____________________________________________________________________________________________
-ALTERNATE STATe
+> ALTERNATE STATe
 = concat({[CALDAY2]} distinct CALDAY, ',')
 
+> max and min with alternate state
+= min({'CALDAY2'<Year = $::Year, Month = $::Month>}[CALDAY]) & ' - ' & max({'CALDAY2'<Year = $::Year, Month = $::Month>}CALDAY)
+
+_____________________________________________________________________________________________
+GET SELECTED COUNT
+= GetSelectedCount([CALDAY], true(), 'CALDAY2') = 0
+
+_____________________________________________________________________________________________
+WORD WRAP
+= & 'CHR(10)' & 
 
 _____________________________________________________________________________________________
