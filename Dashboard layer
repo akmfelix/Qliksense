@@ -19,3 +19,12 @@ SAMPLES FROM DASHBOARD
 = if(GetSelectedCount([CALDAY], true(), 'CALDAY2')=0,'CSI' & CHR(10)  &'дата2', 'CSI ' & CHR(10) & min({'CALDAY2'<Year = $::Year, Month = $::Month>}[CALDAY]) & ' - ' & max({'CALDAY2'<Year = $::Year, Month = $::Month>}CALDAY)) 
 
  //state1 * $<Timestamp=>  sum({state1 * $<Timestamp=>}some_kind_of_field) 
+
+
+To intersect with selections from the another state, such as the default, your syntax would be:
+
+sum({state1 * $}some_kind_of_field) 
+
+If you wanted to merge your selections but ignore any Timestamp selections that may be in the default state:
+
+sum({state1 * $<Timestamp=>}some_kind_of_field) 
