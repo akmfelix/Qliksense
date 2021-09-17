@@ -6,8 +6,9 @@ ________________________________________________________________________________
 = min({'CALDAY2'<Year = $::Year, Month = $::Month>}[CALDAY]) & ' - ' & max({'CALDAY2'<Year = $::Year, Month = $::Month>}CALDAY)
 
 _____________________________________________________________________________________________
-GET SELECTED COUNT
+GET SELECTED COUNT/ FIELDSELECTIONS
 = GetSelectedCount([CALDAY], true(), 'CALDAY2') = 0
+= isNUll(GetFieldSelections(CALDAY))
 
 _____________________________________________________________________________________________
 WORD WRAP
