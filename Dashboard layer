@@ -5,6 +5,15 @@ ________________________________________________________________________________
 > max and min with alternate state
 = min({'CALDAY2'<Year = $::Year, Month = $::Month>}[CALDAY]) & ' - ' & max({'CALDAY2'<Year = $::Year, Month = $::Month>}CALDAY)
 
+> multiple alternate states with set analysis
+= (sum({[CALDAY2] * [MAIN0] <[Код. компании]={"C000000730","NPS","CSI_RB","CSI_KASSA","CSI_Kassa"}, [Наим Филиала]=>  }[5])) 
+> .. inherited alternate state
+= (sum({ $ * [MAIN0] <[Код. компании]={"C000000730","NPS","CSI_RB","CSI_KASSA","CSI_Kassa"}, [Наим Филиала]=>  }[5]))
+
+
+> name with alternate state
+= if(GetSelectedCount([CALDAY], true(), 'CALDAY2')=0,'NPS' & CHR(10)  &'Дата2', 'NPS 2' & CHR(10) & min({'CALDAY2'<Year = $::Year, Month = $::Month>}[CALDAY]) & ' - ' & max({'CALDAY2'<Year = $::Year, Month = $::Month>}CALDAY)) 
+
 _____________________________________________________________________________________________
 GET SELECTED COUNT/ FIELDSELECTIONS
 = GetSelectedCount([CALDAY], true(), 'CALDAY2') = 0
