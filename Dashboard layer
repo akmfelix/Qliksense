@@ -27,14 +27,10 @@ WORD WRAP
 _____________________________________________________________________________________________
 SAMPLES FROM DASHBOARD
 = if(GetSelectedCount([CALDAY], true(), 'CALDAY2')=0,'CSI' & CHR(10)  &'дата2', 'CSI ' & CHR(10) & min({'CALDAY2'<Year = $::Year, Month = $::Month>}[CALDAY]) & ' - ' & max({'CALDAY2'<Year = $::Year, Month = $::Month>}CALDAY)) 
-
- //state1 * $<Timestamp=>  sum({state1 * $<Timestamp=>}some_kind_of_field) 
-
-
-To intersect with selections from the another state, such as the default, your syntax would be:
-
-sum({state1 * $}some_kind_of_field) 
-
-If you wanted to merge your selections but ignore any Timestamp selections that may be in the default state:
-
-sum({state1 * $<Timestamp=>}some_kind_of_field) 
+= state1 * $<Timestamp=>  sum({state1 * $<Timestamp=>}some_kind_of_field) 
+> To intersect with selections from the another state, such as the default, your syntax would be:
+= sum({state1 * $}some_kind_of_field) 
+> If you wanted to merge your selections but ignore any Timestamp selections that may be in the default state:
+= sum({state1 * $<Timestamp=>}some_kind_of_field) 
+> Colors and variable
+= if($(vNPS_CSI)>= 0.85, rgb(137,207,194), if( $(vNPS_CSI) >= 0.8 and $(vNPS_CSI) <0.85, rgb(234,223,172), if ($(vNPS_CSI) >= 0.6 and $(vNPS_CSI) < 0.8, rgb(204,102,119), if ($(vNPS_CSI)<0.6, rgb(000,000,000),rgb(255,255,255)))))
