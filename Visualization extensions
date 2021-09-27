@@ -2,4 +2,4 @@ HOW TO IDENTIFY AN OBJECT IN A QLIKSENSE APP BY OBJECT ID
 How do you isolate this object and locate it in the Qlik Sense App?
   -> Access the Qlik Sense App in the hub and navigate to the desired sheet
   -> Append /options/developer/ at the end of the URL
-![id object](images/id object.jpg)
+![id_object](images/id_object.jpg)
