@@ -2,8 +2,4 @@
 How do you isolate this object and locate it in the Qlik Sense App?
   -> Access the Qlik Sense App in the hub and navigate to the desired sheet
   -> Append /options/developer/ at the end of the URL
-
-      ![id_object](image/id_object.JPG)
-![id_object](image/id_object.JPG)
-
-![id_object](image/id_object.JPG)
+  PIC ![id_object](image/id_object.JPG)
