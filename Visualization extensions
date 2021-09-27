@@ -3,3 +3,13 @@ How do you isolate this object and locate it in the Qlik Sense App?
   -> Access the Qlik Sense App in the hub and navigate to the desired sheet
   -> Append /options/developer/ at the end of the URL
   PIC ![id_object](image/id_object.JPG)
+  
+# CSS
+div [tid="ZhjPE"] {
+    display: none !important;
+}
+
+# background; disabled the background for the textboxes
+.qv-client.qv-card #qv-stage-container .qvt-sheet:not(.qv-custom-size) {
+    background-image: linear-gradient(90deg, #E9EBEE 14%,  #fff 1%) !important;
+}
