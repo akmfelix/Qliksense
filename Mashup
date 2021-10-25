@@ -1,0 +1,13 @@
+What is Mashup?
+In the context of web development, a mashup is a web page or web application that uses content from more than one source to create a single new service displayed in a single graphical interface.
+
+- > A mashup is a web page or web application that uses Graphs from Qlik Sense application
+- > 2.It content can come from one or more than one source to create a web page
+- > 3.The Capability APIs enable to easily integrate with your Qlik Sense objects to get desired result
+- > 4.Custom extensions and widgets can also be used
+
+Note :
+  > You open a Web Socket to Qlik Associative Engine using the qlik.openApp method.
+  > Objects use the same Web Socket, that is the same session, which means they are connected.
+  > Qlik Sense objects work just as they do in the Qlik Sense client.
+
