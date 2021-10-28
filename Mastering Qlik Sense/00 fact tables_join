@@ -1,0 +1,90 @@
+
+# outer join
+Product:
+LOAD * Inline
+[ ProductId, Product Code, Product Description
+111119, AOCE-1247-POX, Current Account
+111120, ACRW-5098-LOK, Saving Account Premium
+111121, GTRD-3422-RTY, Saving Account Standard
+];
+Join (Product)
+Country:
+LOAD * Inline
+[ CountryISOCode, Country
+US, United States
+GB, United Kingdom
+];
+
+### CODE EXPLANATION
+In this example, we join Country to Product. These two tables are not related and do not have a common field name. The result will be one table with the name of the first table loaded (Product), with all possible combinations. The number of rows in the joined tables is:
+# rows joined table = # of rows in [Product] table x # of rows on [Country] table
+======================
+======================
+# inner join
+CustomerProducts:
+LOAD * Inline
+[ CustomerId, Customer Name, ProductId
+1, Juan,111119
+2, Martin,111119
+3, Peter,111120
+];
+Inner Join (CustomerProducts)
+Product:
+LOAD * Inline
+[ ProductId, Product Code, Product Description
+111119, AOCE-1247-POX, Current Account
+111120, ACRW-5098-LOK, Saving Account Premium
+111121, GTRD-3422-RTY, Saving Account Standard
+];
+### CODE EXPLANATION
+The resulting table will have the columns of both tables, but only those values where ProductId is the same in both tables. The common field name in this example is ProductId, and therefore, Qlik Sense will automatically join using this key field.
+======================
+======================
+# left join
+
+CustomerProducts:
+LOAD * Inline
+[ CustomerId, Customer Name, ProductId
+1, Juan,999999
+2, Martin,111119
+3, Peter,111120
+];
+Left Join (CustomerProducts)
+Product:
+LOAD * Inline
+[ ProductId, Product Code, Product Description
+111119, AOCE-1247-POX, Current Account
+111120, ACRW-5098-LOK, Saving Account Premium
+111121, GTRD-3422-RTY, Saving Account Standard
+];
+
+### CODE EXPLANATION
+A left join, like the other joins, will result in one logical table. In this case, all records from the first loaded table (table A) will be kept, as well as the matching records in table B. The rest of the non-existing values in table B will be populated as null values in the resulting table.
+
+In this example, Juan has the product 999999. However, this product does not exist in the product table. The result will be null values for all product columns for Juan.
+======================
+======================
+# right join
+
+CustomerProducts:
+LOAD * Inline
+[ CustomerId, Customer Name, ProductId
+1, Juan,999999
+2, Martin,111119
+3, Peter,111120
+];
+Right Join (CustomerProducts)
+Product:
+LOAD * Inline
+[ ProductId, Product Code, Product Description
+111119, AOCE-1247-POX, Current Account
+111120, ACRW-5098-LOK, Saving Account Premium
+111121, GTRD-3422-RTY, Saving Account Standard
+];
+
+### CODE EXPLANATION
+A right join is the same as a left join, however, all records in the second loaded table are kept, and the values on the first table are either joined through the common field or left null if there are no matching values.
+
+The left table is the first loaded table and the right table is the second loaded table.
+
+Continuing with the same example as before, all records from the product table will be kept, and records on the first table, CustomerProducts, will be matched based on the ProductId common field, resulting in the following:
