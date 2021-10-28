@@ -45,3 +45,12 @@ on only the first fact table would look like this:
 
 I then concatenate the second fact table to the first one. This makes them one logical table.
 
+I rename %MonthEndDate to %Date so that we use an already existing field of the
+same type. Because the transaction fact table contains one record per
+customer per month, and the time when this happens is not relevant, I also
+make sure that the date is of a date format by using the | floor() function. This
+truncates the hh:mm:ss, or hours, minutes, and seconds, from the timestamp
+date. For example, a date of | 2018-09-11 14:58:09 will become | 2018-09-11
+00:00:00 when using the floor() function. A timestamp date value with
+| 00:00:00 is the same as having the date, only with no hour.
+
