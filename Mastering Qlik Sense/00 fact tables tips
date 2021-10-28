@@ -1,0 +1,17 @@
+DIMENSION EXPLANATION 275 page
+
+In general, a fact is composed of foreign key fields and measure fields. On the other hand, a dimension in its simplest form will have a primary key and descriptive fields.
+
+Try to make the values in each field as unique as possible. Remove blank spaces in the names using the trim() function. Get rid of unwanted database-related fields, such us internal IDs, audit fields, or dates related to when the rows were updated. These are usually not used in the front-end and should thus not be loaded. 
+
+Create surrogate keys using the Autonumber() function and remove all natural keys when possible, as key fields are, by nature, dense.
+
+When it comes to dimensions, we can find a great variety of them. Dimensions can be slowly changing, rapidly changing, role-playing, among several others.
+
+A slowly changing dimension is a dimension in which its attributes do not change too often over time. For example, your customer might change addresses; however, this action does not happen on a regular basis, and therefore, customer is a slowly changing dimension.
+
+JOINS 279 page
+
+There is no data model without table linkage. The main purpose of data modeling is to create a performing set of tables -facts and dimensions- so we can join them together.
+
+Joins allow you to link your tables; most specifically, your facts and dimensions. Joins are statements in the script and are thus executed when the script is reloaded. In order for a join to exist, at least one table must have been loaded into memory before we use the join syntax in the script. If we don't specify to what table we want to join the next table, Qlik Sense will join it to the most recently loaded table.
