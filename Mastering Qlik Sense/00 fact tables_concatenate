@@ -1,0 +1,47 @@
+=============================
+### CODE
+set HidePrefix='_' ;
+
+[Accumulating Snapshot Fact]:
+LOAD 
+       TranStarDate                    as _Date 
+      , TranEndDate 	as _TranEndDate
+      , Customer as _Customer
+      , Account as _Account 
+      ,round(TransactionAmount, 0.1)      as TransactionAmount 
+      ,round(CurrentBalance, 0.1)         as CurrentBalance 
+      ,round(TransactionAmountFee, 0.1)   as TransactionAmountFee 
+      ,'TransactionFact'                  as _FactType   
+FROM [lib://AttachedFiles/chapter 6.xlsx]
+(ooxml, embedded labels, table is Лист1);
+
+Concatenate ([Accumulating Snapshot Fact])
+
+[TransactionFact]:
+LOAD    
+         floor(MonthEndDate)                as _Date    
+        , Customer    as _Customer
+       ,round(CustomerFee, 0.1)             as CustomeFee     
+       ,'CustomerFeeFact'                   as _FactType
+FROM [lib://AttachedFiles/chapter 6.xlsx]
+(ooxml, embedded labels, table is Лист2);
+=============================
+
+### CODE EXPLANATION
+In the first line, we set the user-defined variable HidePrefix = '_'. By
+doing this, Qlik Sense will treat all fields with a name prefix of _ as systems
+fields, and they will therefore not be visible to the user.
+
+I then load the first fact table. I rename the first date field, as I want it to be
+general so that we can also use it when we load the second fact table. This
+will force Qlik Sense to treat the same field types from two different tables
+as one field, and as a result, we will have less distinct values than having
+two fields with the same values.
+
+I finally create a flag that will help me distinguish the records of the two fact
+tables. An expression in the front-end using set analysis to make calculations
+on only the first fact table would look like this:
+| sum({< _FactType = {'TransactionFact'} >} TransactionAmount)
+
+I then concatenate the second fact table to the first one. This makes them one logical table.
+
