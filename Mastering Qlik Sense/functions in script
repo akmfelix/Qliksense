@@ -1,0 +1,2 @@
+trim()        Remove blank spaces in the names
+Autonumber()  Function will assign an incremental value to each distinct expression.
